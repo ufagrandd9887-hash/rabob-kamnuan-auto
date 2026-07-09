@@ -12,3 +12,47 @@
   [headers.values]
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
+
+
+# Security cleanup: block public access to helper/account files
+[[redirects]]
+  from = "/rabob_kamnuan_auto_100users_accounts.csv"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/rabob_kamnuan_auto_100users_accounts.txt"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/sample_update_csv.csv"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/real_history_sources.csv"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/README_*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/package.json"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/netlify.toml"
+  to = "/404"
+  status = 404
+  force = true

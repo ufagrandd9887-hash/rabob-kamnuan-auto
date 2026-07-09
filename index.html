@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <meta name="theme-color" content="#850d17">
-<title>ระบบคำนวนอัตโนมัติ | 100 Users Ready</title>
+<title>ระบบคำนวนอัตโนมัติ | Member Access Ready</title>
 <style>
 :root{--red:#d7192f;--red2:#7d0d17;--gold:#f6c453;--green:#12b76a;--blue:#3b82f6;--text:#fffaf1;--muted:rgba(255,250,241,.72);--line:rgba(255,255,255,.14);--shadow:0 18px 48px rgba(0,0,0,.35)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -598,12 +598,116 @@ button,.btn{
 }
 </style>
 
+
+<style id="human-final-trust-cards">
+.trustSummary{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:10px;
+  margin:12px 0 14px;
+}
+.trustCard{
+  padding:13px 14px;
+  border-radius:18px;
+  background:#fff!important;
+  border:1px solid rgba(125,13,23,.16)!important;
+  box-shadow:0 10px 24px rgba(143,15,29,.06);
+  color:#13070a!important;
+}
+.trustLabel{font-size:12px;color:#650814!important;font-weight:900;margin-bottom:5px}
+.trustValue{font-size:16px;color:#13070a!important;font-weight:900;line-height:1.35}
+.trustSub{font-size:12px;color:#3b2529!important;line-height:1.55;margin-top:4px}
+.humanExplain{
+  margin:10px 0 12px;
+  padding:12px 14px;
+  border-radius:18px;
+  background:linear-gradient(180deg,#fff7ef,#ffffff)!important;
+  border:1px dashed rgba(125,13,23,.25)!important;
+  color:#241316!important;
+  font-size:13px;
+  line-height:1.75;
+  font-weight:800;
+}
+.humanExplain b{color:#650814!important}
+.pick .pickTitle{display:block;font-size:12px;color:#650814!important;font-weight:900;margin-bottom:3px}
+.pick .pickMeta{
+  margin-top:8px!important;
+  padding-top:8px!important;
+  border-top:1px dashed rgba(125,13,23,.24)!important;
+  font-size:11px!important;
+  line-height:1.72!important;
+  color:#241316!important;
+  font-weight:800!important;
+  text-align:left!important;
+}
+.pick .evidenceBox{
+  margin-top:7px;
+  padding:8px 9px;
+  border-radius:13px;
+  background:#fff7f2!important;
+  border:1px solid rgba(125,13,23,.13)!important;
+}
+.pick .evidenceLine{display:block;margin:2px 0}
+.pick .dateStrong{color:#650814!important;font-weight:900!important}
+.pick .resultStrong{color:#b00018!important;font-weight:900!important}
+.pick .countStrong{color:#065f46!important;font-weight:900!important}
+.pick .sourceStrong{color:#0f3a8a!important;font-weight:900!important;word-break:break-word}
+.pick .credTag{
+  display:inline-flex;
+  margin-top:7px;
+  padding:5px 8px;
+  border-radius:999px;
+  background:#ecfdf3!important;
+  color:#065f46!important;
+  border:1px solid rgba(6,95,70,.18)!important;
+  font-size:11px;
+  font-weight:900;
+}
+.drawExplain{
+  display:block;
+  margin:10px 0 12px;
+  padding:10px 12px;
+  border-radius:16px;
+  background:#fff1ea;
+  border:1px solid rgba(125,13,23,.18);
+  color:#241316!important;
+  font-weight:800;
+  font-size:13px;
+  line-height:1.7;
+}
+.drawExplain b{color:#650814!important}
+@media(max-width:650px){
+  .trustSummary{grid-template-columns:1fr}
+  .pick .pickMeta{font-size:12px!important}
+}
+</style>
+
+
+<style id="final-security-cleanup-style">
+.securityNote{
+  margin-top:10px;
+  padding:12px 14px;
+  border-radius:18px;
+  background:#fff8e6!important;
+  border:1px solid rgba(217,164,65,.32)!important;
+  color:#241316!important;
+  font-size:13px;
+  line-height:1.75;
+  font-weight:800;
+}
+.securityNote b{color:#650814!important}
+.privateAdminText{
+  color:#650814!important;
+  font-weight:900!important;
+}
+</style>
+
 </head>
 <body>
 <div class="app">
-<header class="top glass"><div class="brand"><div class="logo" id="logoTop"></div><div><h1>ระบบคำนวนอัตโนมัติ</h1><p>Auto Calculate Pro • ตัวหนังสือเข้ม • 100 Users Ready</p></div></div><div class="userbar"><span class="pill" id="userStatus">ยังไม่ได้เข้าสู่ระบบ</span><button class="primary" onclick="openLogin()">🔐 เข้าสู่ระบบ</button><button class="light" id="logoutBtn" onclick="logout()" style="display:none">ออก</button></div></header>
+<header class="top glass"><div class="brand"><div class="logo" id="logoTop"></div><div><h1>ระบบคำนวนอัตโนมัติ</h1><p>Auto Calculate Pro • ตัวหนังสือเข้ม • Member Access Ready</p></div></div><div class="userbar"><span class="pill" id="userStatus">ยังไม่ได้เข้าสู่ระบบ</span><button class="primary" onclick="openLogin()">🔐 เข้าสู่ระบบ</button><button class="light" id="logoutBtn" onclick="logout()" style="display:none">ออก</button></div></header>
 
-<section class="hero glass"><div class="heroflex"><div class="herologo" id="logoHero"></div><div><h2>ระบบคำนวนอัตโนมัติ วิเคราะห์ง่าย อ่านผลชัดเจน</h2><p>แดชบอร์ดคำนวนอัตโนมัติสำหรับดูสถิติย้อนหลัง เลือกดูข้อมูลได้สูงสุด 1 ปี แสดงงวดวันที่ออกผลชัดเจน ใช้งานง่ายบนมือถือ และออกแบบใหม่ให้สว่าง อ่านง่าย ดูพรีเมียม</p><div class="badges"><span class="badge">ย้อนหลัง 1 ปี</span><span class="badge">งวดวันที่ออกผลชัดเจน</span><span class="badge">อัปเดตอัตโนมัติ</span><span class="badge">ใช้งานง่ายบนมือถือ</span><span class="badge">100 ยูชเซอร์พร้อมใช้</span></div><div class="linebox"><a class="linebtn" href="https://bit.ly/aydunggg" target="_blank" rel="noopener"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiB2aWV3Qm94PSIwIDAgMTgwIDE4MCI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiByeD0iNDIiIGZpbGw9IiMwNkM3NTUiLz4KPHBhdGggZD0iTTkwIDM4Yy0zMiAwLTU4IDIwLTU4IDQ1IDAgMjIgMjAgNDAgNDcgNDQgMiAuNCA1IDEuNSA2IDMuNSAxIDEuOC43IDQuNS40IDYuMmwtMSA2Yy0uMyAxLjgtMS40IDcgNSAzLjggNi40LTMuMiAzNC4zLTIwLjIgNDYuOC0zNC42IDguNi05LjQgMTEuOC0xOC44IDExLjgtMjguOUMxNDggNTggMTIyIDM4IDkwIDM4eiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNNjEgOTRoMTZ2LThINjlWNjZoLTh2Mjh6bTI1IDBoOFY2NmgtOHYyOHptMTcgMGg4Vjc4bDEzIDE2aDhWNjZoLTh2MTZsLTEzLTE2aC04djI4em0zOSAwaDI1di04aC0xN3YtNGgxNXYtOGgtMTV2LTNoMTd2LThoLTI1djMxeiIgZmlsbD0iIzA2Qzc1NSIvPgo8L3N2Zz4=" alt="LINE"></a><span class="lineText">รับสูตรคำนวนทักไลน์</span></div></div></div></section>
+<section class="hero glass"><div class="heroflex"><div class="herologo" id="logoHero"></div><div><h2>ระบบคำนวนอัตโนมัติ วิเคราะห์ง่าย อ่านผลชัดเจน</h2><p>แดชบอร์ดคำนวนอัตโนมัติสำหรับดูสถิติย้อนหลัง เลือกดูข้อมูลได้สูงสุด 1 ปี แสดงงวดวันที่ออกผลชัดเจน ใช้งานง่ายบนมือถือ และออกแบบใหม่ให้สว่าง อ่านง่าย ดูพรีเมียม</p><div class="badges"><span class="badge">ย้อนหลัง 1 ปี</span><span class="badge">งวดวันที่ออกผลชัดเจน</span><span class="badge">อัปเดตอัตโนมัติ</span><span class="badge">ใช้งานง่ายบนมือถือ</span><span class="badge">ระบบสมาชิกพร้อมใช้งาน</span></div><div class="linebox"><a class="linebtn" href="https://bit.ly/aydunggg" target="_blank" rel="noopener"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiB2aWV3Qm94PSIwIDAgMTgwIDE4MCI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiByeD0iNDIiIGZpbGw9IiMwNkM3NTUiLz4KPHBhdGggZD0iTTkwIDM4Yy0zMiAwLTU4IDIwLTU4IDQ1IDAgMjIgMjAgNDAgNDcgNDQgMiAuNCA1IDEuNSA2IDMuNSAxIDEuOC43IDQuNS40IDYuMmwtMSA2Yy0uMyAxLjgtMS40IDcgNSAzLjggNi40LTMuMiAzNC4zLTIwLjIgNDYuOC0zNC42IDguNi05LjQgMTEuOC0xOC44IDExLjgtMjguOUMxNDggNTggMTIyIDM4IDkwIDM4eiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNNjEgOTRoMTZ2LThINjlWNjZoLTh2Mjh6bTI1IDBoOFY2NmgtOHYyOHptMTcgMGg4Vjc4bDEzIDE2aDhWNjZoLTh2MTZsLTEzLTE2aC04djI4em0zOSAwaDI1di04aC0xN3YtNGgxNXYtOGgtMTV2LTNoMTd2LThoLTI1djMxeiIgZmlsbD0iIzA2Qzc1NSIvPgo8L3N2Zz4=" alt="LINE"></a><span class="lineText">รับสูตรคำนวนทักไลน์</span></div></div></div></section>
 
 <div class="notice glass"><b>คำเตือน:</b> ระบบนี้เป็นเครื่องมือวิเคราะห์สถิติย้อนหลังเพื่อประกอบการดูข้อมูลเท่านั้น ไม่ใช่การรับประกันผลลัพธ์ใด ๆ</div>
 <div class="lock glass" id="lockNotice"></div>
@@ -651,13 +755,13 @@ button,.btn{
   <span class="onlineBadge">ไม่ต้องใช้ API key</span>
   <span class="onlineBadge">Master อัปเดตเองได้</span>
   <div class="onlineHelp">
-    วิธีใช้: เลือกหวยที่ต้องการก่อน → วางข้อมูล CSV → ใส่รหัส Master Update PIN → กดอัปโหลดขึ้น Netlify<br>
+    วิธีใช้: เลือกหวยที่ต้องการก่อน → วางข้อมูล CSV → ใส่รหัส รหัสอัปเดตข้อมูล → กดอัปโหลดขึ้น Netlify<br>
     รูปแบบข้อมูล: <b>draw_date,result,n3,n2</b> เช่น <b>09/07/2569,1234,234,34</b>
   </div>
   <div class="grid2">
     <div>
-      <label>Master Update PIN</label>
-      <input id="onlineAdminPin" type="password" placeholder="ค่าเริ่มต้น 123456 หรือค่าที่ตั้งใน Netlify ENV">
+      <label>รหัสอัปเดตข้อมูล</label>
+      <input id="onlineAdminPin" type="password" placeholder="ใส่รหัสอัปเดตที่ตั้งไว้ใน Netlifyใน Netlify ENV">
     </div>
     <div>
       <label>วิธีนำเข้า</label>
@@ -722,7 +826,7 @@ button,.btn{
 
 <section id="account" class="panel"><div class="grid"><div class="glass card"><h2>บัญชีของฉัน</h2><div class="status" id="myAccountBox"></div><label>รหัสผ่านใหม่</label><input id="myNewPass" placeholder="ตั้งรหัสใหม่"><div class="btnrow"><button class="green protected" onclick="changeOwnPassword()">เปลี่ยนรหัสผ่านของฉัน</button><a class="btn green" href="https://bit.ly/aydunggg" target="_blank"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiB2aWV3Qm94PSIwIDAgMTgwIDE4MCI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiByeD0iNDIiIGZpbGw9IiMwNkM3NTUiLz4KPHBhdGggZD0iTTkwIDM4Yy0zMiAwLTU4IDIwLTU4IDQ1IDAgMjIgMjAgNDAgNDcgNDQgMiAuNCA1IDEuNSA2IDMuNSAxIDEuOC43IDQuNS40IDYuMmwtMSA2Yy0uMyAxLjgtMS40IDcgNSAzLjggNi40LTMuMiAzNC4zLTIwLjIgNDYuOC0zNC42IDguNi05LjQgMTEuOC0xOC44IDExLjgtMjguOUMxNDggNTggMTIyIDM4IDkwIDM4eiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNNjEgOTRoMTZ2LThINjlWNjZoLTh2Mjh6bTI1IDBoOFY2NmgtOHYyOHptMTcgMGg4Vjc4bDEzIDE2aDhWNjZoLTh2MTZsLTEzLTE2aC04djI4em0zOSAwaDI1di04aC0xN3YtNGgxNXYtOGgtMTV2LTNoMTd2LThoLTI1djMxeiIgZmlsbD0iIzA2Qzc1NSIvPgo8L3N2Zz4=" style="width:24px;height:24px;border-radius:7px"> LINE</a></div></div><div class="glass card"><h2>ติดต่อเจ้าหน้าที่</h2><div class="status">รับสูตรคำนวนและสอบถามข้อมูลเพิ่มเติม กดปุ่ม LINE ได้ทันที</div></div></div></section>
 
-<section id="users" class="panel masterOnlySection"><div class="grid"><div class="glass card"><h2>จัดการผู้ใช้ สำหรับ Master</h2><div class="status"><b>Master เริ่มต้น:</b> master / 123456<br>ระบบฝัง user001-user100 พร้อมใช้งานแล้ว และ Master ยังสามารถสร้างผู้ใช้เพิ่มเองได้<br>ยูชเซอร์สมาชิกใช้งานได้ 3 วัน หลังจากนั้นระบบจะปิดอัตโนมัติ จนกว่า Master จะเปิดใช้งาน/ต่ออายุให้อีก 3 วัน</div><label>สร้างเอง: ชื่อผู้ใช้</label><input id="newUser" placeholder="เช่น user01"><label>รหัสผ่าน</label><input id="newPass" placeholder="ตั้งรหัสผ่าน"><label>สิทธิ์</label><select id="newRole"><option value="user">User</option><option value="master">Master</option></select><div class="btnrow"><button class="green" onclick="createUser()">เปิดยูชเซอร์</button><button class="gold" onclick="changeMasterPassword()">เปลี่ยนรหัส master</button><button class="light" onclick="resetEmbedded100Users()">โหลดชุด 100 ยูชเซอร์</button></div><div class="status" id="userManageStatus"></div></div><div class="glass card"><h2>รายชื่อผู้ใช้</h2><div class="tablewrap" id="userTable"></div></div></div></section>
+<section id="users" class="panel masterOnlySection"><div class="grid"><div class="glass card"><h2>จัดการผู้ใช้ สำหรับ Master</h2><div class="status"><b>Master เริ่มต้น:</b> บัญชีผู้ดูแล<br>ระบบสมาชิกจัดการโดยผู้ดูแลเท่านั้น<br>ยูชเซอร์สมาชิกใช้งานได้ 3 วัน หลังจากนั้นระบบจะปิดอัตโนมัติ จนกว่า Master จะเปิดใช้งาน/ต่ออายุให้อีก 3 วัน</div><label>สร้างเอง: ชื่อผู้ใช้</label><input id="newUser" placeholder="เช่น user01"><label>รหัสผ่าน</label><input id="newPass" placeholder="ตั้งรหัสผ่าน"><label>สิทธิ์</label><select id="newRole"><option value="user">User</option><option value="master">Master</option></select><div class="btnrow"><button class="green" onclick="createUser()">เปิดยูชเซอร์</button><button class="gold" onclick="changeMasterPassword()">เปลี่ยนรหัส master</button></div><div class="status" id="userManageStatus"></div></div><div class="glass card"><h2>รายชื่อผู้ใช้</h2><div class="tablewrap" id="userTable"></div></div></div></section>
 
 <section id="history" class="panel"><div class="glass card"><h2>ข้อมูลย้อนหลังของหวยที่เลือก</h2><div class="btnrow"><button class="blue protected" onclick="downloadJson()">ดาวน์โหลด JSON</button><button class="light masterOnly" onclick="clearData()">ล้างข้อมูลหวยนี้</button></div><div class="tablewrap" id="historyTable" style="margin-top:12px"></div><div class="lineCta" id="historyLineCta"><a class="btn" href="https://bit.ly/aydunggg" target="_blank"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiB2aWV3Qm94PSIwIDAgMTgwIDE4MCI+PHJlY3Qgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxODAiIHJ4PSI0MiIgZmlsbD0iIzA2Qzc1NSIvPjxwYXRoIGQ9Ik05MCAzOGMtMzIgMC01OCAyMC01OCA0NSAwIDIyIDIwIDQwIDQ3IDQ0IDIgLjQgNSAxLjUgNiAzLjUgMSAxLjguNyA0LjUuNCA2LjJsLTEgNmMtLjMgMS44LTEuNCA3IDUgMy44IDYuNC0zLjIgMzQuMy0yMC4yIDQ2LjgtMzQuNiA4LjYtOS40IDExLjgtMTguOCAxMS44LTI4LjlDMTQ4IDU4IDEyMiAzOCA5MCAzOHoiIGZpbGw9IiNmZmYiLz48cGF0aCBkPSJNNjEgOTRoMTZ2LThINjlWNjZoLTh2Mjh6bTI1IDBoOFY2NmgtOHYyOHptMTcgMGg4Vjc4bDEzIDE2aDhWNjZoLTh2MTZsLTEzLTE2aC04djI4em0zOSAwaDI1di04aC0xN3YtNGgxNXYtOGgtMTV2LTNoMTd2LThoLTI1djMxeiIgZmlsbD0iIzA2Qzc1NSIvPjwvc3ZnPg=="> รับสูตรคำนวนทักไลน์</a></div></div></section>
 
@@ -731,7 +835,7 @@ button,.btn{
 </div>
 
 <nav class="bottom" id="bottomNav"></nav>
-<div class="modal" id="loginModal"><div class="modalcard"><button class="light close" onclick="closeLogin()">✕</button><h2>เข้าสู่ระบบ</h2><div class="small">ต้องใช้ยูชเซอร์/รหัสที่ Master เปิดให้เท่านั้น</div>
+<div class="modal" id="loginModal"><div class="modalcard"><button class="light close" onclick="closeLogin()">✕</button><h2>เข้าสู่ระบบ</h2><div class="small">ต้องใช้ยูชเซอร์/รหัสที่ผู้ดูแลระบบเปิดให้เท่านั้น</div>
 <div class="lineCta" style="margin:12px 0">
   <a class="btn" href="https://bit.ly/aydunggg" target="_blank">
     <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiB2aWV3Qm94PSIwIDAgMTgwIDE4MCI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiByeD0iNDIiIGZpbGw9IiMwNkM3NTUiLz4KPHBhdGggZD0iTTkwIDM4Yy0zMiAwLTU4IDIwLTU4IDQ1IDAgMjIgMjAgNDAgNDcgNDQgMiAuNCA1IDEuNSA2IDMuNSAxIDEuOC43IDQuNS40IDYuMmwtMSA2Yy0uMyAxLjgtMS40IDcgNSAzLjggNi40LTMuMiAzNC4zLTIwLjIgNDYuOC0zNC42IDguNi05LjQgMTEuOC0xOC44IDExLjgtMjguOUMxNDggNTggMTIyIDM4IDkwIDM4eiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNNjEgOTRoMTZ2LThINjlWNjZoLTh2Mjh6bTI1IDBoOFY2NmgtOHYyOHptMTcgMGg4Vjc4bDEzIDE2aDhWNjZoLTh2MTZsLTEzLTE2aC04djI4em0zOSAwaDI1di04aC0xN3YtNGgxNXYtOGgtMTV2LTNoMTd2LThoLTI1djMxeiIgZmlsbD0iIzA2Qzc1NSIvPgo8L3N2Zz4="> รับสูตรคำนวนทักไลน์
@@ -869,7 +973,7 @@ function resetEmbedded100Users(){
  localStorage.setItem("masterpro_accounts_100_v1",JSON.stringify(seeded));
  localStorage.removeItem("masterpro_session_100_v1");
  currentUser=null;
- alert("โหลดชุด 100 ยูชเซอร์เรียบร้อย กรุณาเข้าสู่ระบบ master ใหม่");
+ alert("รีเซ็ตชุดผู้ใช้เรียบร้อย");
  location.reload();
 }
 
@@ -1130,38 +1234,148 @@ function renderHumanTrustSummary(){
   </div>`;
 }
 
-function analyze(){if(!hasAccess()){renderLockedAnalysis();return}let len=+targetType.value||2,rows=(+lastN.value>0)?visibleDB().slice(0,+lastN.value):visibleDB().slice();let nums=rows.map((r,i)=>({num:getNum(r),row:r,i})).filter(x=>x.num.length===len);if(!nums.length){latest=null;topPicks.innerHTML=renderHumanTrustSummary()+picks.map((x,i)=>{
-  const lastRow=findLastSeenRowForPick(x.num);
-  const latestRow=latestSystemRow();
-  const seenCount=countSeenForPick(x.num);
-  const lastSeenDate=lastRow?.drawDate||"-";
-  const lastSeenResult=displayResultFromRow(lastRow);
-  const lastSeenN2=normalizeN2FromRow(lastRow)||"-";
-  const latestDate=latestRow?.drawDate||"-";
-  const latestResult=displayResultFromRow(latestRow);
-  const src=displaySourceFromRow(lastRow||latestRow);
+
+function hrN2(r){
+  return String(r?.n2||String(r?.result||"").slice(-2)).replace(/\D/g,"").slice(-2).padStart(2,"0");
+}
+function hrResult(r){
+  if(!r)return "-";
+  const result=String(r.result||"").replace(/\D/g,"");
+  const n3=String(r.n3||"").replace(/\D/g,"");
+  const n2=String(r.n2||"").replace(/\D/g,"");
+  if(result)return result;
+  if(n3||n2)return [n3,n2].filter(Boolean).join(" / ");
+  return "-";
+}
+function hrSource(r){
+  if(!r)return "-";
+  const url=String(r.url||"").trim();
+  const src=String(r.source||"").trim();
+  return url||src||"ข้อมูลที่ Master อัปโหลด/ดึงเข้า Netlify";
+}
+function hrLatestRow(){
+  const rows=visibleDB();
+  return rows[0]||null;
+}
+function hrOldestRow(){
+  const rows=visibleDB();
+  return rows.length?rows[rows.length-1]:null;
+}
+function hrLastSeenRow(num){
+  const rows=visibleDB();
+  const target=String(num).padStart(2,"0");
+  for(const r of rows){
+    if(hrN2(r)===target)return r;
+  }
+  return null;
+}
+function hrCountSeen(num){
+  const rows=visibleDB();
+  const target=String(num).padStart(2,"0");
+  return rows.filter(r=>hrN2(r)===target).length;
+}
+function hrTrustSummary(){
+  const rows=visibleDB();
+  const latestRow=hrLatestRow();
+  const oldestRow=hrOldestRow();
+  const marketName=MARKETS[selectedMarket]?.name||"-";
+  return `<div class="trustSummary">
+    <div class="trustCard">
+      <div class="trustLabel">หวยที่กำลังวิเคราะห์</div>
+      <div class="trustValue">${esc(marketName)}</div>
+      <div class="trustSub">ระบบใช้เฉพาะข้อมูลของหวยที่เลือก</div>
+    </div>
+    <div class="trustCard">
+      <div class="trustLabel">ผลจริงงวดล่าสุดที่ใช้คำนวณ</div>
+      <div class="trustValue">${esc(latestRow?.drawDate||"-")} • ${esc(hrResult(latestRow))}</div>
+      <div class="trustSub">เลข 2 ตัวของงวดนี้: ${esc(hrN2(latestRow)||"-")}</div>
+    </div>
+    <div class="trustCard">
+      <div class="trustLabel">ช่วงข้อมูลย้อนหลังที่ใช้</div>
+      <div class="trustValue">${rows.length} งวด</div>
+      <div class="trustSub">ตั้งแต่ ${esc(oldestRow?.drawDate||"-")} ถึง ${esc(latestRow?.drawDate||"-")}</div>
+    </div>
+    <div class="trustCard">
+      <div class="trustLabel">ที่มาข้อมูลล่าสุด</div>
+      <div class="trustValue" style="font-size:13px;word-break:break-word">${esc(hrSource(latestRow))}</div>
+      <div class="trustSub">ตรวจสอบรายการเต็มได้ที่เมนูข้อมูล</div>
+    </div>
+  </div>
+  <div class="humanExplain">
+    <b>อ่านผลอย่างไร:</b> เลขแนะนำด้านล่างเป็นผลจากการจัดอันดับสถิติย้อนหลังจริงในระบบ ไม่ใช่การรับประกันผลล่วงหน้า แต่ละใบจะแสดงหลักฐานว่าเลขนั้นเคยออกล่าสุดในงวดวันที่เท่าไหร่ ผลหวยวันนั้นออกอะไร และตรวจย้อนกลับได้จากเมนูข้อมูล
+  </div>`;
+}
+function hrPickCard(x){
+  const lastRow=hrLastSeenRow(x.num);
+  const latestRow=hrLatestRow();
+  const seenCount=hrCountSeen(x.num);
+  const src=hrSource(lastRow||latestRow);
   return `<div class="pick">
     <span class="pickTitle">เลขแนะนำจากสถิติย้อนหลัง</span>
-    <b>${x.num}</b>
+    <b>${esc(x.num)}</b>
     <span>${esc(MARKETS[selectedMarket].name)}</span>
     <div class="pickMeta">
       <div class="evidenceBox">
-        <span class="evidenceLine">หลักฐานย้อนหลัง: เลข <span class="resultStrong">${esc(x.num)}</span> เคยออกล่าสุดในงวดวันที่ <span class="dateStrong">${esc(lastSeenDate)}</span></span>
-        <span class="evidenceLine">ผลหวยของวันนั้น: <span class="resultStrong">${esc(lastSeenResult)}</span> → เลข 2 ตัว <span class="resultStrong">${esc(lastSeenN2)}</span></span>
+        <span class="evidenceLine">หลักฐานย้อนหลัง: เลข <span class="resultStrong">${esc(x.num)}</span> เคยออกล่าสุดในงวดวันที่ <span class="dateStrong">${esc(lastRow?.drawDate||"-")}</span></span>
+        <span class="evidenceLine">ผลหวยของวันนั้น: <span class="resultStrong">${esc(hrResult(lastRow))}</span> → เลข 2 ตัว <span class="resultStrong">${esc(hrN2(lastRow)||"-")}</span></span>
         <span class="evidenceLine">ออกในช่วงที่เลือก: <span class="countStrong">${seenCount}</span> ครั้ง</span>
       </div>
       <div class="evidenceBox">
-        <span class="evidenceLine">งวดล่าสุดในระบบ: <span class="dateStrong">${esc(latestDate)}</span></span>
-        <span class="evidenceLine">ผลจริงงวดล่าสุด: <span class="resultStrong">${esc(latestResult)}</span></span>
+        <span class="evidenceLine">งวดล่าสุดในระบบ: <span class="dateStrong">${esc(latestRow?.drawDate||"-")}</span></span>
+        <span class="evidenceLine">ผลจริงงวดล่าสุด: <span class="resultStrong">${esc(hrResult(latestRow))}</span></span>
         <span class="evidenceLine">ที่มาข้อมูล: <span class="sourceStrong">${esc(src)}</span></span>
       </div>
       <span class="credTag">ตรวจสอบย้อนกลับได้จากเมนูข้อมูล</span>
     </div>
     <div class="tag">คะแนนสถิติ ${round(x.score)} | หาย ${x.miss} งวด</div>
   </div>`;
-}).join("")["digitTable","rankTable","missingTable","positionTable"].forEach(id=>document.getElementById(id).innerHTML="");hotDigits.innerHTML='<span class="chip">ยังไม่มีข้อมูล</span>';beginnerGuide.innerHTML="ยังไม่มีข้อมูลสำหรับวิเคราะห์";updateDash();return}let allD=[];nums.forEach(x=>x.num.split("").forEach(d=>allD.push(d)));let df=cnt(allD,x=>x),nf=cnt(nums,x=>x.num),pf=Array.from({length:len},(_,p)=>cnt(nums,x=>x.num[p]));let hot=Object.entries(digits(df)).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));let q=trustScore()/100;let scored=range(len).map(n=>{let freq=nf[n]||0,idx=nums.findIndex(x=>x.num===n),miss=idx<0?nums.length:idx,pos=0;for(let i=0;i<len;i++)pos+=(pf[i][n[i]]||0)*1.7;let ds=n.split("").reduce((a,d)=>a+(df[d]||0),0)*.65;let score=((freq*8)+pos+ds+(miss*.55))*(.85+q*.15);return{num:n,freq,miss,score:Math.round(score*10)/10}}).sort((a,b)=>b.score-a.score||b.freq-a.freq||a.num.localeCompare(b.num));let missing=scored.slice().sort((a,b)=>b.miss-a.miss||a.freq-b.freq||a.num.localeCompare(b.num));latest={nums,hot,scored,missing,pf,picks:scored.slice(0,+pickCount.value||12)};renderAnalysis();updateDash()}
+}
+
+function analyze(){
+ if(!hasAccess()){renderLockedAnalysis();return}
+ let len=+targetType.value||2;
+ let rows=(+lastN.value>0)?visibleDB().slice(0,+lastN.value):visibleDB().slice();
+ let nums=rows.map((r,i)=>({num:getNum(r),row:r,i})).filter(x=>x.num.length===len);
+ if(!nums.length){
+   latest=null;
+   topPicks.innerHTML='<div class="status">ยังไม่มีข้อมูลสำหรับวิเคราะห์ กรุณาดึงข้อมูลออนไลน์หรือนำเข้าข้อมูลก่อน</div>';
+   ["digitTable","rankTable","missingTable","positionTable"].forEach(id=>document.getElementById(id).innerHTML="");
+   hotDigits.innerHTML='<span class="chip">ยังไม่มีข้อมูล</span>';
+   beginnerGuide.innerHTML="ยังไม่มีข้อมูลสำหรับวิเคราะห์";
+   updateDash();
+   return;
+ }
+ let allD=[];
+ nums.forEach(x=>x.num.split("").forEach(d=>allD.push(d)));
+ let df=cnt(allD,x=>x),nf=cnt(nums,x=>x.num),pf=Array.from({length:len},(_,p)=>cnt(nums,x=>x.num[p]));
+ let hot=Object.entries(digits(df)).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
+ let q=trustScore()/100;
+ let scored=range(len).map(n=>{
+   let freq=nf[n]||0,idx=nums.findIndex(x=>x.num===n),miss=idx<0?nums.length:idx,pos=0;
+   for(let i=0;i<len;i++)pos+=(pf[i][n[i]]||0)*1.7;
+   let ds=n.split("").reduce((a,d)=>a+(df[d]||0),0)*.65;
+   let score=((freq*8)+pos+ds+(miss*.55))*(.85+q*.15);
+   return{num:n,freq,miss,score:Math.round(score*10)/10};
+ }).sort((a,b)=>b.score-a.score||b.freq-a.freq||a.num.localeCompare(b.num));
+ let missing=scored.slice().sort((a,b)=>b.miss-a.miss||a.freq-b.freq||a.num.localeCompare(b.num));
+ latest={nums,hot,scored,missing,pf,picks:scored.slice(0,+pickCount.value||12)};
+ renderAnalysis();
+ updateDash();
+}
 function renderLockedAnalysis(){topPicks.innerHTML='<div class="status"><span class="err">ล็อกอยู่</span> ต้องเข้าสู่ระบบก่อนจึงจะดูผลวิเคราะห์ได้</div>';["digitTable","rankTable","missingTable","positionTable"].forEach(id=>document.getElementById(id).innerHTML="");hotDigits.innerHTML='<span class="chip red">ล็อกข้อมูล</span>';beginnerGuide.innerHTML='<span class="err">ยังไม่มีสิทธิ์วิเคราะห์</span>'}
-function renderAnalysis(){topPicks.innerHTML=latest.picks.map((x,i)=>`<div class="pick"><b>${x.num}</b><span>${MARKETS[selectedMarket].name} • งวด ${latestDate()}</span><span class="tag">คะแนน ${x.score} | หาย ${x.miss}</span></div>`).join("");hotDigits.innerHTML=latest.hot.slice(0,6).map(([d,c],i)=>`<span class="chip ${i<3?'gold':'blue'}">${d} <small>${c} ครั้ง</small></span>`).join("");let max=Math.max(...latest.hot.map(x=>x[1]),1);digitTable.innerHTML=table(["เลข","จำนวน","กราฟ"],latest.hot.map(([d,c])=>[`<b>${d}</b>`,c,bar(c,max)]));let r=latest.scored.slice(0,30),mx=Math.max(...r.map(x=>x.score),1);rankTable.innerHTML=table(["อันดับ","เลข","คะแนน","เคยออก","หาย","กราฟ"],r.map((x,i)=>[i+1,`<b>${x.num}</b>`,x.score,x.freq,x.miss+" งวด",bar(x.score,mx)]));let m=latest.missing.slice(0,30),mm=Math.max(...m.map(x=>x.miss),1);missingTable.innerHTML=table(["อันดับ","เลข","เคยออก","ไม่ออกนาน","กราฟ"],m.map((x,i)=>[i+1,`<b>${x.num}</b>`,x.freq,x.miss+" งวด",bar(x.miss,mm)]));positionTable.innerHTML=table(["ตำแหน่ง","เลขเด่น"],latest.pf.map((p,i)=>["หลักที่ "+(i+1),Object.entries(digits(p)).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([d,c])=>`<span class="chip red">${d} (${c})</span>`).join(" ")]));beginnerGuide.innerHTML=`<b>อ่านผลแบบง่าย:</b><br>หวยที่เลือก: <b>${MARKETS[selectedMarket].name}</b><br>งวดวันที่ออกผลล่าสุด: <b>${latestDate()}</b><br>คะแนนสูง = ความถี่ + ตำแหน่งหลัก + เลขหาย + คุณภาพข้อมูล`}
+function renderAnalysis(){
+ topPicks.innerHTML=hrTrustSummary()+latest.picks.map(x=>hrPickCard(x)).join("");
+ hotDigits.innerHTML=latest.hot.slice(0,6).map(([d,c],i)=>`<span class="chip ${i<3?'gold':'blue'}">${d} <small>${c} ครั้ง</small></span>`).join("");
+ let max=Math.max(...latest.hot.map(x=>x[1]),1);
+ digitTable.innerHTML=table(["เลข","จำนวน","กราฟ"],latest.hot.map(([d,c])=>[`<b>${d}</b>`,c,bar(c,max)]));
+ let r=latest.scored.slice(0,30),mx=Math.max(...r.map(x=>x.score),1);
+ rankTable.innerHTML=table(["อันดับ","เลข","คะแนน","เคยออก","หาย","กราฟ"],r.map((x,i)=>[i+1,`<b>${x.num}</b>`,x.score,x.freq,x.miss+" งวด",bar(x.score,mx)]));
+ let m=latest.missing.slice(0,30),mm=Math.max(...m.map(x=>x.miss),1);
+ missingTable.innerHTML=table(["อันดับ","เลข","เคยออก","ไม่ออกนาน","กราฟ"],m.map((x,i)=>[i+1,`<b>${x.num}</b>`,x.freq,x.miss+" งวด",bar(x.miss,mm)]));
+ positionTable.innerHTML=table(["ตำแหน่ง","เลขเด่น"],latest.pf.map((p,i)=>["หลักที่ "+(i+1),Object.entries(digits(p)).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([d,c])=>`<span class="chip red">${d} (${c})</span>`).join(" ")]));
+ const lr=hrLatestRow();
+ beginnerGuide.innerHTML=`<span class="drawExplain"><b>ผลจริงที่ใช้วิเคราะห์:</b> ระบบใช้ข้อมูลจากเมนูข้อมูลของหวยที่เลือก โดยงวดล่าสุดคือ <b>${esc(lr?.drawDate||"-")}</b> ผล <b>${esc(hrResult(lr))}</b> และเลขแนะนำแต่ละใบจะแสดงวันที่ที่เลขนั้นเคยออกจริง พร้อมผลหวยของวันนั้น</span>`;
+}
 function table(h,r){return `<table><thead><tr>${h.map(x=>`<th>${x}</th>`).join("")}</tr></thead><tbody>${r.map(x=>`<tr>${x.map(y=>`<td>${y}</td>`).join("")}</tr>`).join("")}</tbody></table>`}function bar(v,m){let p=m?Math.max(3,Math.round(v/m*100)):0;return `<div class="barbox"><div class="bar" style="width:${p}%"></div></div>`}
 function renderHistory(){let db=visibleDB();historyTable.innerHTML=db.length?table(["ลำดับ","หวย","งวดวันที่ออกผล","ผลรางวัล","4 ตัว","3 ตัว","2 ตัว","แหล่ง"],db.map((r,i)=>[i+1,MARKETS[r.market]?.name||r.market,r.drawDate,r.result||"-",r.result4||"-",r.n3||"-",r.n2||"-",r.source])):'<div class="status">ยังไม่มีข้อมูลในช่วงที่เลือก</div>'}
 function copyPicks(){if(!requireAccess())return;if(!latest)return alert("ยังไม่มีผลวิเคราะห์");navigator.clipboard.writeText(`${MARKETS[selectedMarket].name}\nงวดวันที่ออกผล: ${latestDate()}\n`+latest.picks.map(x=>x.num).join(", ")).then(()=>alert("คัดลอกแล้ว"))}
@@ -1267,7 +1481,7 @@ async function loadOnlineMarket(market=selectedMarket,silent=true){
 async function uploadOnlineRows(rows,mode){
   if(!isMaster())return alert("เฉพาะ Master เท่านั้น");
   const pin=(document.getElementById("onlineAdminPin")&&onlineAdminPin.value)||"";
-  if(!pin)return alert("กรุณาใส่ Master Update PIN");
+  if(!pin)return alert("กรุณาใส่ รหัสอัปเดตข้อมูล");
   if(!rows||!rows.length)return alert("ไม่พบข้อมูลสำหรับอัปโหลด");
   try{
     setOnlineStatus("กำลังอัปโหลดข้อมูลขึ้น Netlify...");
@@ -1334,7 +1548,7 @@ function setRealHistoryStatus(msg,type=""){
 async function importRealHistory(markets){
   if(!isMaster())return alert("เฉพาะ Master เท่านั้น");
   const pin=(document.getElementById("onlineAdminPin")&&onlineAdminPin.value)||"";
-  if(!pin)return alert("กรุณาใส่ Master Update PIN ก่อน");
+  if(!pin)return alert("กรุณาใส่ รหัสอัปเดตข้อมูล ก่อน");
   try{
     setRealHistoryStatus("กำลังดึงข้อมูลจริงย้อนหลัง 1 ปี อาจใช้เวลาสักครู่...");
     const res=await fetch(REAL_HISTORY_FUNCTION,{
