@@ -1,8 +1,9 @@
 
-import { getStore } from "@netlify/blobs";
+import { getStore, connectLambda } from "@netlify/blobs";
 import { json, headers, readJsonFile } from "./utils.mjs";
 
 export const handler = async (event) => {
+  connectLambda(event);
   if (event.httpMethod === "OPTIONS") return { statusCode: 204, headers };
   try {
     const markets = await readJsonFile("data/markets.json");

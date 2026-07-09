@@ -1,8 +1,9 @@
 
-import { getStore } from "@netlify/blobs";
+import { getStore, connectLambda } from "@netlify/blobs";
 import { json, headers, readJsonFile, cleanRow, parseCsv, mergeRows } from "./utils.mjs";
 
 export const handler = async (event) => {
+  connectLambda(event);
   if (event.httpMethod === "OPTIONS") return { statusCode: 204, headers };
   if (event.httpMethod !== "POST") return json(405, { ok: false, error: "method not allowed" });
 
