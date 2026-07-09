@@ -450,6 +450,154 @@ button,.btn{
 }
 </style>
 
+
+<style id="pick-date-result-match">
+.pick .pickMeta{
+  margin-top:8px!important;
+  padding-top:8px!important;
+  border-top:1px dashed rgba(125,13,23,.24)!important;
+  font-size:11px!important;
+  line-height:1.65!important;
+  color:#241316!important;
+  font-weight:800!important;
+}
+.pick .dateLine{
+  display:block;
+  margin:2px 0;
+}
+.pick .dateStrong{
+  color:#650814!important;
+  font-weight:900!important;
+}
+.pick .resultStrong{
+  color:#b00018!important;
+  font-weight:900!important;
+}
+.pick .countStrong{
+  color:#065f46!important;
+  font-weight:900!important;
+}
+.drawExplain{
+  display:inline-block;
+  margin-top:6px;
+  padding:7px 10px;
+  border-radius:999px;
+  background:#fff1ea;
+  border:1px solid rgba(125,13,23,.18);
+  color:#650814!important;
+  font-weight:900;
+  font-size:12px;
+}
+</style>
+
+
+<style id="human-readable-result-trust">
+.trustSummary{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:10px;
+  margin:12px 0 14px;
+}
+.trustCard{
+  padding:13px 14px;
+  border-radius:18px;
+  background:#fff!important;
+  border:1px solid rgba(125,13,23,.16)!important;
+  box-shadow:0 10px 24px rgba(143,15,29,.06);
+  color:#13070a!important;
+}
+.trustCard .trustLabel{
+  font-size:12px;
+  color:#650814!important;
+  font-weight:900;
+  margin-bottom:5px;
+}
+.trustCard .trustValue{
+  font-size:17px;
+  color:#13070a!important;
+  font-weight:900;
+  line-height:1.35;
+}
+.trustCard .trustSub{
+  font-size:12px;
+  color:#3b2529!important;
+  line-height:1.55;
+  margin-top:4px;
+}
+.humanExplain{
+  margin:10px 0 12px;
+  padding:12px 14px;
+  border-radius:18px;
+  background:linear-gradient(180deg,#fff7ef,#ffffff)!important;
+  border:1px dashed rgba(125,13,23,.25)!important;
+  color:#241316!important;
+  font-size:13px;
+  line-height:1.75;
+  font-weight:800;
+}
+.humanExplain b{color:#650814!important}
+.pick .pickTitle{
+  display:block;
+  font-size:12px;
+  color:#650814!important;
+  font-weight:900;
+  margin-bottom:3px;
+}
+.pick .pickMeta{
+  margin-top:8px!important;
+  padding-top:8px!important;
+  border-top:1px dashed rgba(125,13,23,.24)!important;
+  font-size:11px!important;
+  line-height:1.72!important;
+  color:#241316!important;
+  font-weight:800!important;
+  text-align:left!important;
+}
+.pick .evidenceBox{
+  margin-top:7px;
+  padding:8px 9px;
+  border-radius:13px;
+  background:#fff7f2!important;
+  border:1px solid rgba(125,13,23,.13)!important;
+}
+.pick .evidenceLine{
+  display:block;
+  margin:2px 0;
+}
+.pick .dateStrong{color:#650814!important;font-weight:900!important}
+.pick .resultStrong{color:#b00018!important;font-weight:900!important}
+.pick .countStrong{color:#065f46!important;font-weight:900!important}
+.pick .sourceStrong{color:#0f3a8a!important;font-weight:900!important;word-break:break-word}
+.pick .credTag{
+  display:inline-flex;
+  margin-top:7px;
+  padding:5px 8px;
+  border-radius:999px;
+  background:#ecfdf3!important;
+  color:#065f46!important;
+  border:1px solid rgba(6,95,70,.18)!important;
+  font-size:11px;
+  font-weight:900;
+}
+.drawExplain{
+  display:block;
+  margin-top:6px;
+  padding:10px 12px;
+  border-radius:16px;
+  background:#fff1ea;
+  border:1px solid rgba(125,13,23,.18);
+  color:#241316!important;
+  font-weight:800;
+  font-size:13px;
+  line-height:1.7;
+}
+.drawExplain b{color:#650814!important}
+@media(max-width:650px){
+  .trustSummary{grid-template-columns:1fr}
+  .pick .pickMeta{font-size:12px!important}
+}
+</style>
+
 </head>
 <body>
 <div class="app">
@@ -473,7 +621,7 @@ button,.btn{
     <option value="all">ทั้งหมด</option>
   </select>
 </div>
-<div class="status" id="syncStatus">เข้าสู่ระบบก่อนเพื่อเริ่มใช้งาน</div><div class="btnrow"><button class="primary protected" onclick="loadOnlineMarket(selectedMarket,false)">☁️ ดึงข้อมูลออนไลน์</button><button class="light protected" onclick="autoTrustedUpdate()">⚡ อัปเดตจากเว็บเดิม</button><button class="gold masterOnly" onclick="reloadHistoricalSeed()">โหลดข้อมูลย้อนหลัง 1 ปี</button><button class="blue" onclick="showTabById('markets')">เลือกหวย</button><a class="btn green" href="https://bit.ly/aydunggg" target="_blank"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiB2aWV3Qm94PSIwIDAgMTgwIDE4MCI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiByeD0iNDIiIGZpbGw9IiMwNkM3NTUiLz4KPHBhdGggZD0iTTkwIDM4Yy0zMiAwLTU4IDIwLTU4IDQ1IDAgMjIgMjAgNDAgNDcgNDQgMiAuNCA1IDEuNSA2IDMuNSAxIDEuOC43IDQuNS40IDYuMmwtMSA2Yy0uMyAxLjgtMS40IDcgNSAzLjggNi40LTMuMiAzNC4zLTIwLjIgNDYuOC0zNC42IDguNi05LjQgMTEuOC0xOC44IDExLjgtMjguOUMxNDggNTggMTIyIDM4IDkwIDM4eiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNNjEgOTRoMTZ2LThINjlWNjZoLTh2Mjh6bTI1IDBoOFY2NmgtOHYyOHptMTcgMGg4Vjc4bDEzIDE2aDhWNjZoLTh2MTZsLTEzLTE2aC04djI4em0zOSAwaDI1di04aC0xN3YtNGgxNXYtOGgtMTV2LTNoMTd2LThoLTI1djMxeiIgZmlsbD0iIzA2Qzc1NSIvPgo8L3N2Zz4=" style="width:24px;height:24px;border-radius:7px"> LINE</a></div></div><div class="glass card"><h2>วิธีใช้งาน</h2><div class="status">เลือกประเภทที่ต้องการดู กดอัปเดตข้อมูล แล้วอ่านผลคำนวนย้อนหลังได้ทันที หน้าตาถูกปรับให้สว่าง สะอาด อ่านง่าย และดูเป็นมืออาชีพมากขึ้น</div><div class="chips" id="groupChips"></div></div></div><div class="glass card" style="margin-top:14px"><h2>เลขแนะนำล่าสุด</h2><div class="small" id="drawInfoText">งวดวันที่ออกผล: -</div><div class="pickgrid" id="topPicks" style="margin-top:12px"></div><div class="btnrow"><button class="blue protected" onclick="copyPicks()">คัดลอกเลข</button><button class="light protected" onclick="exportCSV()">ดาวน์โหลด CSV</button></div></div></section>
+<div class="status" id="syncStatus">เข้าสู่ระบบก่อนเพื่อเริ่มใช้งาน</div><div class="btnrow"><button class="primary protected" onclick="loadOnlineMarket(selectedMarket,false)">☁️ ดึงข้อมูลออนไลน์</button><button class="light protected" onclick="autoTrustedUpdate()">⚡ อัปเดตจากเว็บเดิม</button><button class="gold masterOnly" onclick="reloadHistoricalSeed()">โหลดข้อมูลย้อนหลัง 1 ปี</button><button class="blue" onclick="showTabById('markets')">เลือกหวย</button><a class="btn green" href="https://bit.ly/aydunggg" target="_blank"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiB2aWV3Qm94PSIwIDAgMTgwIDE4MCI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiByeD0iNDIiIGZpbGw9IiMwNkM3NTUiLz4KPHBhdGggZD0iTTkwIDM4Yy0zMiAwLTU4IDIwLTU4IDQ1IDAgMjIgMjAgNDAgNDcgNDQgMiAuNCA1IDEuNSA2IDMuNSAxIDEuOC43IDQuNS40IDYuMmwtMSA2Yy0uMyAxLjgtMS40IDcgNSAzLjggNi40LTMuMiAzNC4zLTIwLjIgNDYuOC0zNC42IDguNi05LjQgMTEuOC0xOC44IDExLjgtMjguOUMxNDggNTggMTIyIDM4IDkwIDM4eiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNNjEgOTRoMTZ2LThINjlWNjZoLTh2Mjh6bTI1IDBoOFY2NmgtOHYyOHptMTcgMGg4Vjc4bDEzIDE2aDhWNjZoLTh2MTZsLTEzLTE2aC04djI4em0zOSAwaDI1di04aC0xN3YtNGgxNXYtOGgtMTV2LTNoMTd2LThoLTI1djMxeiIgZmlsbD0iIzA2Qzc1NSIvPgo8L3N2Zz4=" style="width:24px;height:24px;border-radius:7px"> LINE</a></div></div><div class="glass card"><h2>วิธีใช้งาน</h2><div class="status">เลือกประเภทที่ต้องการดู กดอัปเดตข้อมูล แล้วอ่านผลคำนวนย้อนหลังได้ทันที หน้าตาถูกปรับให้สว่าง สะอาด อ่านง่าย และดูเป็นมืออาชีพมากขึ้น</div><div class="chips" id="groupChips"></div></div></div><div class="glass card" style="margin-top:14px"><h2>เลขแนะนำจากผลย้อนหลังจริง</h2><div class="small" id="drawInfoText">งวดวันที่ออกผล: -</div><div class="pickgrid" id="topPicks" style="margin-top:12px"></div><div class="btnrow"><button class="blue protected" onclick="copyPicks()">คัดลอกเลข</button><button class="light protected" onclick="exportCSV()">ดาวน์โหลด CSV</button></div></div></section>
 
 <section id="markets" class="panel"><div class="glass card"><h2>เลือกหวย</h2><div class="grid3"><div><label>ค้นหา</label><input id="marketSearch" placeholder="เช่น ลาว ฮานอย ออมสิน" oninput="renderMarkets()"></div><div><label>หมวด</label><select id="groupFilter" onchange="renderMarkets()"><option value="">ทั้งหมด</option></select></div><div><label>ประเภทเลข</label><select id="targetType" onchange="analyze()"></select></div></div>
 <div class="selectedMarketBanner" id="selectedMarketBanner">
@@ -903,41 +1051,113 @@ function updateDash(){let db=visibleDB(),sc=trustScore();rowCount.textContent=db
 function getNum(r){let t=+targetType.value;if(t===6)return (r.result||"").slice(-6).padStart(6,"0");if(t===4)return r.result4||(r.result||"").slice(-4);if(t===3)return r.n3||(r.result||"").slice(-3);return r.n2||(r.result||"").slice(-2)}
 function cnt(a,f){let m={};a.forEach(x=>{let k=f(x);if(k)m[k]=(m[k]||0)+1});return m}function digits(m){let o={};for(let i=0;i<10;i++)o[i]=m[i]||0;return o}function range(len){return Array.from({length:10**len},(_,i)=>String(i).padStart(len,"0"))}
 
-function findLastSeenForPick(num){
+
+
+
+
+
+
+function normalizeN2FromRow(r){
+  return String(r?.n2||String(r?.result||"").slice(-2)).replace(/\D/g,"").slice(-2).padStart(2,"0");
+}
+function displayResultFromRow(r){
+  if(!r)return "-";
+  const result=String(r.result||"").replace(/\D/g,"");
+  const n3=String(r.n3||"").replace(/\D/g,"");
+  const n2=String(r.n2||"").replace(/\D/g,"");
+  if(result)return result;
+  if(n3||n2)return [n3,n2].filter(Boolean).join(" / ");
+  return "-";
+}
+function displaySourceFromRow(r){
+  if(!r)return "-";
+  const src=String(r.source||"").trim();
+  const url=String(r.url||"").trim();
+  if(url)return url;
+  if(src)return src;
+  return "ข้อมูลที่ Master อัปโหลด/ดึงเข้า Netlify";
+}
+function findLastSeenRowForPick(num){
   const rows=visibleDB();
   const target=String(num).padStart(2,"0");
   for(const r of rows){
-    const n2=String(r.n2||String(r.result||"").slice(-2)).replace(/\D/g,"").slice(-2).padStart(2,"0");
-    if(n2===target)return r.drawDate||"-";
+    if(normalizeN2FromRow(r)===target)return r;
   }
-  return "-";
+  return null;
 }
 function countSeenForPick(num){
   const rows=visibleDB();
   const target=String(num).padStart(2,"0");
-  return rows.filter(r=>{
-    const n2=String(r.n2||String(r.result||"").slice(-2)).replace(/\D/g,"").slice(-2).padStart(2,"0");
-    return n2===target;
-  }).length;
+  return rows.filter(r=>normalizeN2FromRow(r)===target).length;
 }
-function latestSystemDrawDate(){
+function latestSystemRow(){
   const rows=visibleDB();
-  return rows[0]?(rows[0].drawDate||"-"):"-";
+  return rows[0]||null;
+}
+function oldestSystemRow(){
+  const rows=visibleDB();
+  return rows.length?rows[rows.length-1]:null;
+}
+function renderHumanTrustSummary(){
+  const latestRow=latestSystemRow();
+  const oldestRow=oldestSystemRow();
+  const rows=visibleDB();
+  const marketName=MARKETS[selectedMarket]?.name||"-";
+  return `<div class="trustSummary">
+    <div class="trustCard">
+      <div class="trustLabel">หวยที่กำลังวิเคราะห์</div>
+      <div class="trustValue">${esc(marketName)}</div>
+      <div class="trustSub">ข้อมูลเฉพาะหวยที่เลือกเท่านั้น</div>
+    </div>
+    <div class="trustCard">
+      <div class="trustLabel">ผลจริงงวดล่าสุดที่ใช้คำนวณ</div>
+      <div class="trustValue">${esc(latestRow?.drawDate||"-")} • ${esc(displayResultFromRow(latestRow))}</div>
+      <div class="trustSub">เลข 2 ตัวของงวดนี้: ${esc(normalizeN2FromRow(latestRow)||"-")}</div>
+    </div>
+    <div class="trustCard">
+      <div class="trustLabel">ช่วงข้อมูลย้อนหลัง</div>
+      <div class="trustValue">${rows.length} งวด</div>
+      <div class="trustSub">ตั้งแต่ ${esc(oldestRow?.drawDate||"-")} ถึง ${esc(latestRow?.drawDate||"-")}</div>
+    </div>
+    <div class="trustCard">
+      <div class="trustLabel">แหล่งข้อมูลล่าสุด</div>
+      <div class="trustValue" style="font-size:13px;word-break:break-word">${esc(displaySourceFromRow(latestRow))}</div>
+      <div class="trustSub">แสดงตามข้อมูลที่ดึง/อัปโหลดในระบบ</div>
+    </div>
+  </div>
+  <div class="humanExplain">
+    <b>อ่านผลอย่างไร:</b> เลขแนะนำด้านล่างไม่ใช่การบอกผลล่วงหน้า แต่เป็นการจัดอันดับจากผลย้อนหลังจริงในระบบ โดยแต่ละใบจะแสดงหลักฐานว่าเลขนั้นเคยออกในงวดวันที่เท่าไหร่ และผลหวยของวันนั้นออกอะไร เพื่อให้ตรวจสอบย้อนกลับได้ง่ายขึ้น
+  </div>`;
 }
 
-function analyze(){if(!hasAccess()){renderLockedAnalysis();return}let len=+targetType.value||2,rows=(+lastN.value>0)?visibleDB().slice(0,+lastN.value):visibleDB().slice();let nums=rows.map((r,i)=>({num:getNum(r),row:r,i})).filter(x=>x.num.length===len);if(!nums.length){latest=null;topPicks.innerHTML=picks.map((x,i)=>{
-  const lastSeen=findLastSeenForPick(x.num);
+function analyze(){if(!hasAccess()){renderLockedAnalysis();return}let len=+targetType.value||2,rows=(+lastN.value>0)?visibleDB().slice(0,+lastN.value):visibleDB().slice();let nums=rows.map((r,i)=>({num:getNum(r),row:r,i})).filter(x=>x.num.length===len);if(!nums.length){latest=null;topPicks.innerHTML=renderHumanTrustSummary()+picks.map((x,i)=>{
+  const lastRow=findLastSeenRowForPick(x.num);
+  const latestRow=latestSystemRow();
   const seenCount=countSeenForPick(x.num);
-  const latestDate=latestSystemDrawDate();
+  const lastSeenDate=lastRow?.drawDate||"-";
+  const lastSeenResult=displayResultFromRow(lastRow);
+  const lastSeenN2=normalizeN2FromRow(lastRow)||"-";
+  const latestDate=latestRow?.drawDate||"-";
+  const latestResult=displayResultFromRow(latestRow);
+  const src=displaySourceFromRow(lastRow||latestRow);
   return `<div class="pick">
+    <span class="pickTitle">เลขแนะนำจากสถิติย้อนหลัง</span>
     <b>${x.num}</b>
     <span>${esc(MARKETS[selectedMarket].name)}</span>
     <div class="pickMeta">
-      <div>งวดล่าสุดในระบบ: <span class="latestDate">${esc(latestDate)}</span></div>
-      <div>เลขนี้เคยออกล่าสุด: <span class="lastSeenDate">${esc(lastSeen)}</span></div>
-      <div>ออกในช่วงที่เลือก: <span class="freqText">${seenCount}</span> ครั้ง</div>
+      <div class="evidenceBox">
+        <span class="evidenceLine">หลักฐานย้อนหลัง: เลข <span class="resultStrong">${esc(x.num)}</span> เคยออกล่าสุดในงวดวันที่ <span class="dateStrong">${esc(lastSeenDate)}</span></span>
+        <span class="evidenceLine">ผลหวยของวันนั้น: <span class="resultStrong">${esc(lastSeenResult)}</span> → เลข 2 ตัว <span class="resultStrong">${esc(lastSeenN2)}</span></span>
+        <span class="evidenceLine">ออกในช่วงที่เลือก: <span class="countStrong">${seenCount}</span> ครั้ง</span>
+      </div>
+      <div class="evidenceBox">
+        <span class="evidenceLine">งวดล่าสุดในระบบ: <span class="dateStrong">${esc(latestDate)}</span></span>
+        <span class="evidenceLine">ผลจริงงวดล่าสุด: <span class="resultStrong">${esc(latestResult)}</span></span>
+        <span class="evidenceLine">ที่มาข้อมูล: <span class="sourceStrong">${esc(src)}</span></span>
+      </div>
+      <span class="credTag">ตรวจสอบย้อนกลับได้จากเมนูข้อมูล</span>
     </div>
-    <div class="tag">คะแนน ${round(x.score)} | หาย ${x.miss}</div>
+    <div class="tag">คะแนนสถิติ ${round(x.score)} | หาย ${x.miss} งวด</div>
   </div>`;
 }).join("")["digitTable","rankTable","missingTable","positionTable"].forEach(id=>document.getElementById(id).innerHTML="");hotDigits.innerHTML='<span class="chip">ยังไม่มีข้อมูล</span>';beginnerGuide.innerHTML="ยังไม่มีข้อมูลสำหรับวิเคราะห์";updateDash();return}let allD=[];nums.forEach(x=>x.num.split("").forEach(d=>allD.push(d)));let df=cnt(allD,x=>x),nf=cnt(nums,x=>x.num),pf=Array.from({length:len},(_,p)=>cnt(nums,x=>x.num[p]));let hot=Object.entries(digits(df)).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));let q=trustScore()/100;let scored=range(len).map(n=>{let freq=nf[n]||0,idx=nums.findIndex(x=>x.num===n),miss=idx<0?nums.length:idx,pos=0;for(let i=0;i<len;i++)pos+=(pf[i][n[i]]||0)*1.7;let ds=n.split("").reduce((a,d)=>a+(df[d]||0),0)*.65;let score=((freq*8)+pos+ds+(miss*.55))*(.85+q*.15);return{num:n,freq,miss,score:Math.round(score*10)/10}}).sort((a,b)=>b.score-a.score||b.freq-a.freq||a.num.localeCompare(b.num));let missing=scored.slice().sort((a,b)=>b.miss-a.miss||a.freq-b.freq||a.num.localeCompare(b.num));latest={nums,hot,scored,missing,pf,picks:scored.slice(0,+pickCount.value||12)};renderAnalysis();updateDash()}
 function renderLockedAnalysis(){topPicks.innerHTML='<div class="status"><span class="err">ล็อกอยู่</span> ต้องเข้าสู่ระบบก่อนจึงจะดูผลวิเคราะห์ได้</div>';["digitTable","rankTable","missingTable","positionTable"].forEach(id=>document.getElementById(id).innerHTML="");hotDigits.innerHTML='<span class="chip red">ล็อกข้อมูล</span>';beginnerGuide.innerHTML='<span class="err">ยังไม่มีสิทธิ์วิเคราะห์</span>'}
