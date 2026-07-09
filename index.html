@@ -425,6 +425,31 @@ button,.btn{
 .realHistoryStatus{margin-top:12px;padding:12px 14px;border-radius:18px;background:#fff!important;border:1px solid rgba(37,99,235,.16)!important;color:#13070a!important;font-weight:800;line-height:1.65}
 </style>
 
+
+<style id="pick-date-clarity">
+.pick .pickMeta{
+  margin-top:7px;
+  padding-top:7px;
+  border-top:1px dashed rgba(125,13,23,.20);
+  font-size:11px!important;
+  line-height:1.55!important;
+  color:#241316!important;
+  font-weight:800!important;
+}
+.pick .latestDate{
+  color:#650814!important;
+  font-weight:900!important;
+}
+.pick .lastSeenDate{
+  color:#0f3a8a!important;
+  font-weight:900!important;
+}
+.pick .freqText{
+  color:#065f46!important;
+  font-weight:900!important;
+}
+</style>
+
 </head>
 <body>
 <div class="app">
@@ -877,7 +902,44 @@ function visibleDB(){
 function updateDash(){let db=visibleDB(),sc=trustScore();rowCount.textContent=db.length;latestDrawDate.textContent=latestDate();trustBar.style.width=sc+"%";marketShow.textContent=MARKETS[selectedMarket].name;drawInfoText.textContent="งวดวันที่ออกผล: "+latestDate()+" | ช่วงย้อนหลัง: "+(historyWindow?historyWindow.options[historyWindow.selectedIndex].text:"ย้อนหลัง 1 ปี");renderHistory()}
 function getNum(r){let t=+targetType.value;if(t===6)return (r.result||"").slice(-6).padStart(6,"0");if(t===4)return r.result4||(r.result||"").slice(-4);if(t===3)return r.n3||(r.result||"").slice(-3);return r.n2||(r.result||"").slice(-2)}
 function cnt(a,f){let m={};a.forEach(x=>{let k=f(x);if(k)m[k]=(m[k]||0)+1});return m}function digits(m){let o={};for(let i=0;i<10;i++)o[i]=m[i]||0;return o}function range(len){return Array.from({length:10**len},(_,i)=>String(i).padStart(len,"0"))}
-function analyze(){if(!hasAccess()){renderLockedAnalysis();return}let len=+targetType.value||2,rows=(+lastN.value>0)?visibleDB().slice(0,+lastN.value):visibleDB().slice();let nums=rows.map((r,i)=>({num:getNum(r),row:r,i})).filter(x=>x.num.length===len);if(!nums.length){latest=null;topPicks.innerHTML='<div class="status">ยังไม่มีข้อมูล ให้ Master นำเข้าหรือโหลดข้อมูลก่อน</div>';["digitTable","rankTable","missingTable","positionTable"].forEach(id=>document.getElementById(id).innerHTML="");hotDigits.innerHTML='<span class="chip">ยังไม่มีข้อมูล</span>';beginnerGuide.innerHTML="ยังไม่มีข้อมูลสำหรับวิเคราะห์";updateDash();return}let allD=[];nums.forEach(x=>x.num.split("").forEach(d=>allD.push(d)));let df=cnt(allD,x=>x),nf=cnt(nums,x=>x.num),pf=Array.from({length:len},(_,p)=>cnt(nums,x=>x.num[p]));let hot=Object.entries(digits(df)).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));let q=trustScore()/100;let scored=range(len).map(n=>{let freq=nf[n]||0,idx=nums.findIndex(x=>x.num===n),miss=idx<0?nums.length:idx,pos=0;for(let i=0;i<len;i++)pos+=(pf[i][n[i]]||0)*1.7;let ds=n.split("").reduce((a,d)=>a+(df[d]||0),0)*.65;let score=((freq*8)+pos+ds+(miss*.55))*(.85+q*.15);return{num:n,freq,miss,score:Math.round(score*10)/10}}).sort((a,b)=>b.score-a.score||b.freq-a.freq||a.num.localeCompare(b.num));let missing=scored.slice().sort((a,b)=>b.miss-a.miss||a.freq-b.freq||a.num.localeCompare(b.num));latest={nums,hot,scored,missing,pf,picks:scored.slice(0,+pickCount.value||12)};renderAnalysis();updateDash()}
+
+function findLastSeenForPick(num){
+  const rows=visibleDB();
+  const target=String(num).padStart(2,"0");
+  for(const r of rows){
+    const n2=String(r.n2||String(r.result||"").slice(-2)).replace(/\D/g,"").slice(-2).padStart(2,"0");
+    if(n2===target)return r.drawDate||"-";
+  }
+  return "-";
+}
+function countSeenForPick(num){
+  const rows=visibleDB();
+  const target=String(num).padStart(2,"0");
+  return rows.filter(r=>{
+    const n2=String(r.n2||String(r.result||"").slice(-2)).replace(/\D/g,"").slice(-2).padStart(2,"0");
+    return n2===target;
+  }).length;
+}
+function latestSystemDrawDate(){
+  const rows=visibleDB();
+  return rows[0]?(rows[0].drawDate||"-"):"-";
+}
+
+function analyze(){if(!hasAccess()){renderLockedAnalysis();return}let len=+targetType.value||2,rows=(+lastN.value>0)?visibleDB().slice(0,+lastN.value):visibleDB().slice();let nums=rows.map((r,i)=>({num:getNum(r),row:r,i})).filter(x=>x.num.length===len);if(!nums.length){latest=null;topPicks.innerHTML=picks.map((x,i)=>{
+  const lastSeen=findLastSeenForPick(x.num);
+  const seenCount=countSeenForPick(x.num);
+  const latestDate=latestSystemDrawDate();
+  return `<div class="pick">
+    <b>${x.num}</b>
+    <span>${esc(MARKETS[selectedMarket].name)}</span>
+    <div class="pickMeta">
+      <div>งวดล่าสุดในระบบ: <span class="latestDate">${esc(latestDate)}</span></div>
+      <div>เลขนี้เคยออกล่าสุด: <span class="lastSeenDate">${esc(lastSeen)}</span></div>
+      <div>ออกในช่วงที่เลือก: <span class="freqText">${seenCount}</span> ครั้ง</div>
+    </div>
+    <div class="tag">คะแนน ${round(x.score)} | หาย ${x.miss}</div>
+  </div>`;
+}).join("")["digitTable","rankTable","missingTable","positionTable"].forEach(id=>document.getElementById(id).innerHTML="");hotDigits.innerHTML='<span class="chip">ยังไม่มีข้อมูล</span>';beginnerGuide.innerHTML="ยังไม่มีข้อมูลสำหรับวิเคราะห์";updateDash();return}let allD=[];nums.forEach(x=>x.num.split("").forEach(d=>allD.push(d)));let df=cnt(allD,x=>x),nf=cnt(nums,x=>x.num),pf=Array.from({length:len},(_,p)=>cnt(nums,x=>x.num[p]));let hot=Object.entries(digits(df)).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));let q=trustScore()/100;let scored=range(len).map(n=>{let freq=nf[n]||0,idx=nums.findIndex(x=>x.num===n),miss=idx<0?nums.length:idx,pos=0;for(let i=0;i<len;i++)pos+=(pf[i][n[i]]||0)*1.7;let ds=n.split("").reduce((a,d)=>a+(df[d]||0),0)*.65;let score=((freq*8)+pos+ds+(miss*.55))*(.85+q*.15);return{num:n,freq,miss,score:Math.round(score*10)/10}}).sort((a,b)=>b.score-a.score||b.freq-a.freq||a.num.localeCompare(b.num));let missing=scored.slice().sort((a,b)=>b.miss-a.miss||a.freq-b.freq||a.num.localeCompare(b.num));latest={nums,hot,scored,missing,pf,picks:scored.slice(0,+pickCount.value||12)};renderAnalysis();updateDash()}
 function renderLockedAnalysis(){topPicks.innerHTML='<div class="status"><span class="err">ล็อกอยู่</span> ต้องเข้าสู่ระบบก่อนจึงจะดูผลวิเคราะห์ได้</div>';["digitTable","rankTable","missingTable","positionTable"].forEach(id=>document.getElementById(id).innerHTML="");hotDigits.innerHTML='<span class="chip red">ล็อกข้อมูล</span>';beginnerGuide.innerHTML='<span class="err">ยังไม่มีสิทธิ์วิเคราะห์</span>'}
 function renderAnalysis(){topPicks.innerHTML=latest.picks.map((x,i)=>`<div class="pick"><b>${x.num}</b><span>${MARKETS[selectedMarket].name} • งวด ${latestDate()}</span><span class="tag">คะแนน ${x.score} | หาย ${x.miss}</span></div>`).join("");hotDigits.innerHTML=latest.hot.slice(0,6).map(([d,c],i)=>`<span class="chip ${i<3?'gold':'blue'}">${d} <small>${c} ครั้ง</small></span>`).join("");let max=Math.max(...latest.hot.map(x=>x[1]),1);digitTable.innerHTML=table(["เลข","จำนวน","กราฟ"],latest.hot.map(([d,c])=>[`<b>${d}</b>`,c,bar(c,max)]));let r=latest.scored.slice(0,30),mx=Math.max(...r.map(x=>x.score),1);rankTable.innerHTML=table(["อันดับ","เลข","คะแนน","เคยออก","หาย","กราฟ"],r.map((x,i)=>[i+1,`<b>${x.num}</b>`,x.score,x.freq,x.miss+" งวด",bar(x.score,mx)]));let m=latest.missing.slice(0,30),mm=Math.max(...m.map(x=>x.miss),1);missingTable.innerHTML=table(["อันดับ","เลข","เคยออก","ไม่ออกนาน","กราฟ"],m.map((x,i)=>[i+1,`<b>${x.num}</b>`,x.freq,x.miss+" งวด",bar(x.miss,mm)]));positionTable.innerHTML=table(["ตำแหน่ง","เลขเด่น"],latest.pf.map((p,i)=>["หลักที่ "+(i+1),Object.entries(digits(p)).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([d,c])=>`<span class="chip red">${d} (${c})</span>`).join(" ")]));beginnerGuide.innerHTML=`<b>อ่านผลแบบง่าย:</b><br>หวยที่เลือก: <b>${MARKETS[selectedMarket].name}</b><br>งวดวันที่ออกผลล่าสุด: <b>${latestDate()}</b><br>คะแนนสูง = ความถี่ + ตำแหน่งหลัก + เลขหาย + คุณภาพข้อมูล`}
 function table(h,r){return `<table><thead><tr>${h.map(x=>`<th>${x}</th>`).join("")}</tr></thead><tbody>${r.map(x=>`<tr>${x.map(y=>`<td>${y}</td>`).join("")}</tr>`).join("")}</tbody></table>`}function bar(v,m){let p=m?Math.max(3,Math.round(v/m*100)):0;return `<div class="barbox"><div class="bar" style="width:${p}%"></div></div>`}
