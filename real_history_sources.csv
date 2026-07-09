@@ -1,0 +1,8 @@
+﻿market_key,market_name,source_name,url,status
+thai_gov,หวยรัฐบาลไทย,ThaiORC 1-year statistics + GLO official API as reference,https://lotto.thaiorc.com/thai/stats/lottery-years1.php,รองรับ
+thai_gsb,หวยออมสิน,ThaiORC 1-year statistics,https://lotto.thaiorc.com/gsb/stats/lottery-years1.php,รองรับ
+thai_baac,หวย ธ.ก.ส.,ThaiORC 1-year statistics,https://lotto.thaiorc.com/baac/stats/lottery-years1.php,รองรับ
+lao_dev,ลาวพัฒนา,ThaiORC 1-year statistics / Sanook cross-check,https://lotto.thaiorc.com/lao/stats/lottery-years1.php,รองรับ
+hanoi_normal,ฮานอยปกติ,ThaiORC 1-year statistics / Sanook cross-check,https://lotto.thaiorc.com/hanoi/stats/lottery-years1.php,รองรับ
+hanoi_special,ฮานอยพิเศษ,ThaiORC hanoiextra 1-year statistics,https://lotto.thaiorc.com/hanoiextra/stats/lottery-years1.php,รองรับ
+hanoi_vip,ฮานอย VIP,ThaiORC hanoivip 1-year statistics,https://lotto.thaiorc.com/hanoivip/stats/lottery-years1.php,รองรับ

@@ -49,3 +49,7 @@ draw_date,result,n3,n2
 - Master เป็นคนอัปเดตข้อมูลจริงเองได้จากหน้าเว็บ
 - ข้อมูลที่อัปโหลดจะเก็บไว้ใน Netlify Blobs และทุกคนเห็นข้อมูลกลางชุดเดียวกัน
 - ควรเปลี่ยน ADMIN_PIN ก่อนใช้งานจริง
+
+
+## แก้ไขล่าสุด
+เวอร์ชันนี้เพิ่ม connectLambda(event) ใน Netlify Functions เพื่อให้ Netlify Blobs ทำงานได้กับ Lambda compatibility mode

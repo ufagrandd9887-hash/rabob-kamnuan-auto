@@ -414,6 +414,17 @@ button,.btn{
 }
 </style>
 
+
+<style id="real-history-fetch-theme">
+.realHistoryBox{
+  margin-top:14px;padding:16px;border-radius:22px;background:linear-gradient(180deg,#fff,#fff7ef)!important;
+  border:2px solid rgba(37,99,235,.16)!important;box-shadow:0 18px 45px rgba(37,99,235,.10)
+}
+.realHistoryBox h3{color:#12306b!important;margin:0 0 8px}
+.realHistoryBox .miniNote{font-size:13px;line-height:1.75;color:#241316!important;background:#fff;border:1px dashed rgba(37,99,235,.25);border-radius:18px;padding:12px;margin-top:8px}
+.realHistoryStatus{margin-top:12px;padding:12px 14px;border-radius:18px;background:#fff!important;border:1px solid rgba(37,99,235,.16)!important;color:#13070a!important;font-weight:800;line-height:1.65}
+</style>
+
 </head>
 <body>
 <div class="app">
@@ -447,6 +458,20 @@ button,.btn{
 <div class="marketgrid" id="marketGrid" style="margin-top:12px"></div></div></section>
 
 <section id="sources" class="panel masterOnlySection"><div class="grid"><div class="glass card"><h2>นำเข้า / ตั้งค่าแหล่งข้อมูล สำหรับ Master</h2><div class="source"><h3>เว็บอ้างอิงของหวยที่เลือก</h3><label>Source URL A</label><input id="sourceA"><label>Source URL B</label><input id="sourceB"><div class="btnrow"><button class="primary" onclick="fetchTrustedWeb()">ดึงจากเว็บ</button><button class="dark" onclick="saveSettings()">บันทึก</button></div></div><div class="source"><h3>API เฉพาะ</h3><label>API Endpoint</label><input id="apiEndpoint"><label>API Key</label><input id="apiKey" type="password"><button class="blue" onclick="fetchApi()">ดึงจาก API</button></div></div><div class="glass card"><h2>CSV / Google Sheets / วางข้อมูลเอง</h2>
+
+<div class="realHistoryBox" id="realHistoryBox">
+  <h3>ดึงข้อมูลจริงย้อนหลัง 1 ปี</h3>
+  <div class="miniNote">
+    ระบบจะดึงข้อมูลจากแหล่งย้อนหลัง 1 ปีที่ตั้งไว้ แล้วบันทึกเข้าข้อมูลกลางบน Netlify ให้สมาชิกทุกคนเห็น<br>
+    รองรับหลัก: หวยรัฐบาลไทย, ออมสิน, ธ.ก.ส., ลาวพัฒนา, ฮานอยปกติ, ฮานอยพิเศษ, ฮานอย VIP
+  </div>
+  <div class="btnrow">
+    <button class="blue" onclick="importRealHistorySelected()">ดึงข้อมูลจริงของหวยที่เลือก</button>
+    <button class="gold" onclick="importRealHistoryAll()">ดึงข้อมูลจริงทุกแหล่งที่รองรับ</button>
+  </div>
+  <div class="realHistoryStatus" id="realHistoryStatus">สถานะ: พร้อมดึงข้อมูลจริงย้อนหลัง 1 ปี</div>
+</div>
+
 <div class="onlineBox" id="netlifyOnlineBox">
   <h3>อัปเดตข้อมูลออนไลน์บน Netlify</h3>
   <span class="onlineBadge">ข้อมูลกลางสำหรับทุกคน</span>
@@ -1017,6 +1042,47 @@ selectMarket=function(k){
   setTimeout(()=>loadOnlineMarket(k,true),50);
 };
 window.addEventListener("load",()=>setTimeout(()=>loadOnlineMarket(selectedMarket,true),600));
+
+
+const REAL_HISTORY_FUNCTION="/.netlify/functions/real-history-import";
+function setRealHistoryStatus(msg,type=""){
+  const el=document.getElementById("realHistoryStatus");
+  if(el)el.innerHTML=(type==="ok"?'<span class="ok">สำเร็จ:</span> ':type==="err"?'<span class="err">ผิดพลาด:</span> ':'')+String(msg||"");
+}
+async function importRealHistory(markets){
+  if(!isMaster())return alert("เฉพาะ Master เท่านั้น");
+  const pin=(document.getElementById("onlineAdminPin")&&onlineAdminPin.value)||"";
+  if(!pin)return alert("กรุณาใส่ Master Update PIN ก่อน");
+  try{
+    setRealHistoryStatus("กำลังดึงข้อมูลจริงย้อนหลัง 1 ปี อาจใช้เวลาสักครู่...");
+    const res=await fetch(REAL_HISTORY_FUNCTION,{
+      method:"POST",
+      headers:{"content-type":"application/json"},
+      body:JSON.stringify({adminPin:pin,markets,mode:"replace"})
+    });
+    const data=await res.json();
+    if(!res.ok||!data.ok)throw new Error(data.error||"ดึงข้อมูลจริงไม่สำเร็จ");
+    if(data.data){
+      Object.keys(data.data).forEach(k=>{databases[k]=data.data[k]||[]});
+      saveDB();
+      analyze();updateDash();renderHistory();
+    }
+    const lines=(data.summary||[]).map(x=>{
+      if(x.ok)return `✅ ${x.marketName||x.market}: นำเข้า ${x.imported} แถว รวม ${x.total} แถว`;
+      return `⚠️ ${x.marketName||x.market}: ${x.error||"ข้าม"}`;
+    });
+    setRealHistoryStatus(lines.join("<br>"),"ok");
+    setStatus("ดึงข้อมูลจริงย้อนหลังเสร็จแล้ว","ok");
+  }catch(e){
+    setRealHistoryStatus(e.message,"err");
+    setStatus("ดึงข้อมูลจริงไม่ได้: "+e.message,"err");
+  }
+}
+function importRealHistorySelected(){ importRealHistory([selectedMarket]); }
+function importRealHistoryAll(){ 
+  if(!confirm("ดึงข้อมูลจริงทุกแหล่งที่รองรับและแทนที่ข้อมูลเดิม?"))return;
+  importRealHistory([]);
+}
 
 </script>
 </body></html>
